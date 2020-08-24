@@ -30,7 +30,7 @@ public class C206_CaseStudy {
 					String date_of_birth = Helper.readString("Enter date of birth in this format (DD/MM/YYYY > ");
 					String country = Helper.readString("Enter country of residence > ");
 					
-					memberArrayList.add(new Member(name, gender, mobile_number, email , date_of_birth, country));
+					memberArrayList.add(new Member(name, gender,email,mobile_number , date_of_birth, country));
 				}
 				else if (registerMember_option == 2){
 					Helper.line(30, "=");
@@ -38,7 +38,7 @@ public class C206_CaseStudy {
 					System.out.println(String.format("-20s %-20s %-20s -20s %-20s %-20s\n","Name", "Gender", "Mobile Number","Email","Date of Birth","Country of Residence"));
 					for(int i = 0; i < registrationArrayList.size(); i++) {
 					if(memberArrayList.isEmpty()==false) {
-					System.out.println(String.format("-20s %-20s %-20d -20s %-20s %-20s\n", registrationArrayList.get(i).name,registrationArrayList.get(i).gender ,registrationArrayList.get(i).mobile_number,registrationArrayList.get(i).email, registrationArrayList.get(i).date_of_birth,registrationArrayList.get(i).country));
+					System.out.println(String.format("-20s %-20s %-20d -20s %-20s %-20s\n", memberArrayList.get(i).getName(),memberArrayList.get(i).getGender() ,memberArrayList.get(i).getNumber(),memberArrayList.get(i).getEmail(), memberArrayList.get(i).getDOB(),memberArrayList.get(i).getCountry()));
 					}
 					}
 				}
