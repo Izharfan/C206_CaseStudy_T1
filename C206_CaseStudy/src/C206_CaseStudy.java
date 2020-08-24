@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class C206_CaseStudy {
 
 	private static ArrayList<Reigstration> registrationArrayList;
+	private static ArrayList<Member> memberArrayList;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -29,7 +30,7 @@ public class C206_CaseStudy {
 					String date_of_birth = Helper.readString("Enter date of birth in this format (DD/MM/YYYY > ");
 					String country = Helper.readString("Enter country of residence > ");
 					
-					registrationArrayList.add(new member(name, gender, mobile_number, email , date_of_birth, country));
+					memberArrayList.add(new Member(name, gender, mobile_number, email , date_of_birth, country));
 				}
 				else if (registerMember_option == 2){
 					Helper.line(30, "=");
