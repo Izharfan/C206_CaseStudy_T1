@@ -42,9 +42,25 @@ public class C206_CaseStudy {
 					}
 					}
 				}
-				else{
-				
+				else if (registerMember_option == 3) {
+					String email = Helper.readString("Enter email > ");
+					for(int i = 0; i < registrationArrayList.size(); i++) {
+						if(memberArrayList.isEmpty()==false) {
+							if(memberArrayList.get(i).getEmail() == email){
+								System.out.println("Member deleted");
+							}
+							else {
+								System.out.println("Enter valid email");
+							}
+						}
 				}
+				}	
+				else{
+				System.out.println("Please enter a correct option, Thank you");
+				}
+				
+				
+				
 				
 				
 				
