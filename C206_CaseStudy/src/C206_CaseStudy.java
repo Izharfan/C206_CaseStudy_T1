@@ -37,7 +37,7 @@ public class C206_CaseStudy {
 					System.out.println("View Member");
 					System.out.println(String.format("-20s %-20s %-20s -20s %-20s %-20s\n","Name", "Gender", "Mobile Number","Email","Date of Birth","Country of Residence"));
 					for(int i = 0; i < registrationArrayList.size(); i++) {
-					if(registrationArrayList.isEmpty()==false) {
+					if(memberArrayList.isEmpty()==false) {
 					System.out.println(String.format("-20s %-20s %-20d -20s %-20s %-20s\n", registrationArrayList.get(i).name,registrationArrayList.get(i).gender ,registrationArrayList.get(i).mobile_number,registrationArrayList.get(i).email, registrationArrayList.get(i).date_of_birth,registrationArrayList.get(i).country));
 					}
 					}
