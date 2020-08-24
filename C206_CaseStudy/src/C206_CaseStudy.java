@@ -67,7 +67,8 @@ public class C206_CaseStudy {
 
 			} else if (option == 2) {
 				// Member 2 pls fill up
-				
+				maintainCourseCategory mcc = new maintainCourseCategory();
+				mcc.start();
 
 			} else if (option == 3) {
 				// Member 3 pls fill up
