@@ -30,13 +30,21 @@ public class C206_CaseStudy {
 					String date_of_birth = Helper.readString("Enter date of birth in this format (DD/MM/YYYY > ");
 					String country = Helper.readString("Enter country of residence > ");
 					
-					memberArrayList.add(new Member(name, gender,email,mobile_number , date_of_birth, country));
+					for(int i = 0; i < memberArrayList.size(); i++) {
+						if(memberArrayList.get(i).getEmail() != email) {
+							memberArrayList.add(new Member(name, gender,email,mobile_number , date_of_birth, country));
+						}
+						else {
+							System.out.println("Please enter valid email");
+						}
+					}
+					
 				}
 				else if (registerMember_option == 2){
 					Helper.line(30, "=");
 					System.out.println("View Member");
 					System.out.println(String.format("-20s %-20s %-20s -20s %-20s %-20s\n","Name", "Gender", "Mobile Number","Email","Date of Birth","Country of Residence"));
-					for(int i = 0; i < registrationArrayList.size(); i++) {
+					for(int i = 0; i < memberArrayList.size(); i++) {
 					if(memberArrayList.isEmpty()==false) {
 					System.out.println(String.format("-20s %-20s %-20d -20s %-20s %-20s\n", memberArrayList.get(i).getName(),memberArrayList.get(i).getGender() ,memberArrayList.get(i).getNumber(),memberArrayList.get(i).getEmail(), memberArrayList.get(i).getDOB(),memberArrayList.get(i).getCountry()));
 					}
@@ -53,6 +61,13 @@ public class C206_CaseStudy {
 								System.out.println("Enter valid email");
 							}
 						}
+<<<<<<< HEAD
+				}
+				}	
+				else{
+				System.out.println("Please enter a correct option, Thank you");
+=======
+>>>>>>> branch 'master' of https://github.com/Izharfan/C206_CaseStudy_T1.git
 				}
 				}	
 				else{
@@ -61,10 +76,14 @@ public class C206_CaseStudy {
 				
 				
 				
+				
+				
+				
 
 			} else if (option == 2) {
 				// Member 2 pls fill up
-				
+				maintainCourseCategory mcc = new maintainCourseCategory();
+				mcc.start();
 
 			} else if (option == 3) {
 				// Member 3 pls fill up
