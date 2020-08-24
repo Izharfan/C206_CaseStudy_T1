@@ -15,6 +15,37 @@ public class C206_CaseStudy {
 
 			if (option == 1) {
 				// Member 1 pls fill up
+				System.out.println("1. Register member> ");
+				System.out.println("2. View member");
+				System.out.println("3. Delete member");
+				int registerMember_option = Helper.readInt("Enter an option > ");
+				
+				//Sub menu for registration
+				if (registerMember_option == 1){
+					String name = Helper.readString("Enter your name > ");
+					String gender = Helper.readString("Enter your gender (F/M) > ");
+					int mobile_number = Helper.readInt("Enter mobile number > ");
+					String email = Helper.readString("Enter email > ");
+					String date_of_birth = Helper.readString("Enter date of birth in this format (DD/MM/YYYY > ");
+					String country = Helper.readString("Enter country of residence > ");
+					
+					registrationArrayList.add(new member(name, gender, mobile_number, email , date_of_birth, country));
+				}
+				else if (registerMember_option == 2){
+					Helper.line(30, "=");
+					System.out.println("View Member");
+					System.out.println(String.format("-20s %-20s %-20s -20s %-20s %-20s\n","Name", "Gender", "Mobile Number","Email","Date of Birth","Country of Residence"));
+					for(int i = 0; i < registrationArrayList.size(); i++) {
+					if(registrationArrayList.isEmpty()==false) {
+					System.out.println(String.format("-20s %-20s %-20d -20s %-20s %-20s\n", registrationArrayList.get(i).name,registrationArrayList.get(i).gender ,registrationArrayList.get(i).mobile_number,registrationArrayList.get(i).email, registrationArrayList.get(i).date_of_birth,registrationArrayList.get(i).country));
+					}
+					}
+				}
+				else{
+				
+				}
+				
+				
 				
 
 			} else if (option == 2) {
