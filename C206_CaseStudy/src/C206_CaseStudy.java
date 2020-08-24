@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class C206_CaseStudy {
 
-	private static ArrayList<Reigstration> registrationArrayList;
+	private static ArrayList<Registration> registrationArrayList;
 	private static ArrayList<Member> memberArrayList;
 
 	public static void main(String[] args) {
@@ -76,12 +76,14 @@ public class C206_CaseStudy {
 				//
 				int registration_number = Helper.readInt("Enter registration number > ");
 				int course_schedule_id =  Helper.readInt("Enter course schdeule id > ");
-				
+				String email = Helper.readString("Enter email address" );
 				String registration_date = Helper.readString("Enter date in this format (DD/MM/YYYY > ");
+				String status = "Pending";
 				String registration_time = Helper.readString("Enter time in 24hr format");
 				
-				if(memberArrayList.contains(member)) {
-					registrationArrayList.add(new Registration(member, registration_date, registration_time));
+				if(registrationArrayList.contains(registration_number)) {
+					registrationArrayList.add(new Registration(registration_number, course_schedule_id, email,status,
+							registration_date, registration_time));
 				}
 			}else if(registration_option == 2) {
 				// view all registrations
@@ -90,13 +92,16 @@ public class C206_CaseStudy {
 				System.out.println(String.format("-20s %-20s %-20s\n","Member name", "Date", "Time"));
 				for(int i = 0; i < registrationArrayList.size(); i++) {
 					if(registrationArrayList.isEmpty()==false) {
-					System.out.println(String.format("-20s %-20s %-20s\n", registrationArrayList.get(i).getDate(), , registrationArrayList.get(i).getTime()));
+					System.out.println(String.format("-20s -20s %-20s %-20s\n", registrationArrayList.get(i).getEmail(),registrationArrayList.get(i).getRegistration_date(),  registrationArrayList.get(i).getRegistration_time()));
 				}
 				}
 			
 			}else if (registration_option == 3) {
 				//delete registration
 				
+				int registration_number = Helper.readInt("Enter registration number > ");
+		
+				for(int i = 0; i < registrationArrayList.size(); i++) {
 			}
 			
 			
@@ -108,7 +113,7 @@ public class C206_CaseStudy {
 				System.out.println("Invalid option");
 			}
 
-		}
+			}
 	}
 
 	// menu for course managment system
