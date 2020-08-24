@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class C206_CaseStudy {
-	
-	private static ArrayList<Reigstration> registrationList;
+
+	private static ArrayList<Reigstration> registrationArrayList;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -34,7 +34,11 @@ public class C206_CaseStudy {
 			
 			} else if (option == 5) {
 				// Member 5
-			int registration_option = Helper.readInt("Enter an option > ");
+				System.out.println("1. Register for a course");
+				System.out.println("2. View all registrations");
+				System.out.println("3. Delete registration");
+				int registration_option = Helper.readInt("Enter an option > ");
+			
 			//sub menu for registration
 			if(registration_option == 1) {
 				//
@@ -49,7 +53,15 @@ public class C206_CaseStudy {
 				}
 			}else if(registration_option == 2) {
 				// view all registrations
-				
+				Helper.line(30, "=");
+				System.out.println("View All Registrations");
+				System.out.println(String.format("-20s %-20s %-20s\n","Member name", "Date", "Time"));
+				for(int i = 0; i < registrationArrayList.size(); i++) {
+					if(registrationArrayList.isEmpty()==false) {
+					System.out.println(String.format("-20s %-20s %-20s\n", registrationArrayList.get(i).getDate(), , registrationArrayList.get(i).getTime()));
+				}
+				}
+			
 			}else if (registration_option == 3) {
 				//delete registration
 				
@@ -66,9 +78,8 @@ public class C206_CaseStudy {
 
 		}
 	}
-	
-	
-	//menu for course managment system
+
+	// menu for course managment system
 	public static void menu() {
 		C206_CaseStudy.setHeader("Course Management System");
 		System.out.println("1. Members");
@@ -79,9 +90,8 @@ public class C206_CaseStudy {
 		System.out.println("6. Quit");
 		Helper.line(80, "-");
 
-
 	}
-	
+
 	public static void setHeader(String header) {
 		Helper.line(80, "-");
 		System.out.println(header);
