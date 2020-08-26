@@ -42,33 +42,43 @@ public class CourseCategoryDB {
 		}
 	}
 
-	public static void updateCategory(String name, String new_description) {
+	public static String updateCategory(String name, String new_description) {
 
+		String output = "";
 		boolean isFound = false;
 		for (int i = 0; i < courseCategoryList.size(); i++) {
 			if (courseCategoryList.get(i).getName().equals(name)) {
 				isFound = true;
-
-				boolean duplicateFound = false;
-				for (int a = 0; a < CourseCategoryDB.courseCategoryList.size(); a++) {
-					if (CourseCategoryDB.courseCategoryList.get(a).getDescription().equals(new_description)) {
-						duplicateFound = true;
-					}
-				}
-
-				if (duplicateFound == true) {
-					System.out.println("New description cannot be a duplicate of an old description!");
-
-				} else {
-					courseCategoryList.get(i).setDescription(new_description);
-					System.out.println("Category Description Updated!");
-				}
+				courseCategoryList.get(i).setDescription(new_description);
+				output = "Category Description Updated!";
 			}
 
-			if (isFound == false) {
-				System.out.println("Category Does not Exist");
+		}
+		if (isFound == false) {
+			output = "Category Does not Exist";
+		}
+
+		return output;
+	}
+
+	public static String searchCategory(String name) {
+		String output = "";
+		boolean isTrue = false;
+		for (int i = 0; i < courseCategoryList.size(); i++) {
+			if (courseCategoryList.get(i).getName().equals(name)) {
+				Helper.line(30, "-");
+				System.out.println(String.format("%-10s %-10s\n", "Name", "Description"));
+				System.out.println(String.format("%-10s %-10s\n", courseCategoryList.get(i).getName(),
+						courseCategoryList.get(i).getDescription()));
+				isTrue = true;
 			}
 		}
+		if (isTrue == false) {
+			Helper.line(30, "-");
+			output += "Invalid Category Name!";
+		}
+		
+		return output;
 	}
 
 	public static void showCategoryMenu() {
@@ -78,7 +88,8 @@ public class CourseCategoryDB {
 		System.out.println("2. View Category");
 		System.out.println("3. Delete Category");
 		System.out.println("4. Update Category");
-		System.out.println("5. Quit");
+		System.out.println("5. Search Category");
+		System.out.println("6. Quit");
 		Helper.line(25, "-");
 
 	}

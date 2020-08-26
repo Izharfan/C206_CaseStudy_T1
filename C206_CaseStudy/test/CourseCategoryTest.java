@@ -11,8 +11,8 @@ public class CourseCategoryTest {
 
 	@Before
 	public void setUp() throws Exception {
-		cat1 = new CourseCategory("1", "Uniformed Groups");
-		cat2 = new CourseCategory("2", "Sports");
+		cat1 = new CourseCategory("Sports", "Fun");
+		cat2 = new CourseCategory("Science", "Cool");
 	}
 
 	@After
@@ -57,7 +57,7 @@ public class CourseCategoryTest {
 
 		// Test that viewAllCategory() method returns a String that equals
 		// expectedOutput
-		String expectedOutput = "No Category Found";
+		String expectedOutput = "No Course Category Found";
 		String viewCategory = CourseCategoryDB.viewAllCourseCategory();
 		assertEquals("Test that viewAllCategory() method returns a String that equals expectedOutput", expectedOutput,
 				viewCategory);
@@ -66,7 +66,7 @@ public class CourseCategoryTest {
 		// expectedOutput2
 		CourseCategoryDB.addCourseCategory(cat1);
 		CourseCategoryDB.addCourseCategory(cat2);
-		String expectedOutput2 = String.format("%-10s %-10s\n", "ID", "NAME");
+		String expectedOutput2 = String.format("%-10s %-10s\n", "Name", "Description");
 
 		for (int i = 0; i < CourseCategoryDB.courseCategoryList.size(); i++) {
 			expectedOutput2 += String.format("%-10s %-10s\n", CourseCategoryDB.courseCategoryList.get(i).getName(),
@@ -118,14 +118,46 @@ public class CourseCategoryTest {
 		assertSame("Test if the arraylist.get(0) is cat2 after deleting category 1 from the arraylist ", cat2,
 				CourseCategoryDB.courseCategoryList.get(0));
 	}
-	
+
 	@Test
 	public void updateCategoryTest() {
-		maintainCourseCategory.doAddCourseCategory("Sports");
-		//Test that category description is updated after using doUpdateCategory() method
-		maintainCourseCategory.doUpdateCategory("1", "Uniformed Groups");
-		String updated_description = CourseCategoryDB.courseCategoryList.get(0).getDescription();
-		assertEquals("Test that category description is updated after using the doUpdateCategory() method", updated_description, "Uniformed Groups");
+		// Test that categoryList is not null
+		assertNotNull("Test that categoryList is not null", CourseCategoryDB.courseCategoryList);
+		
+		// Test that categoryList still equals 1 when update category description
+		CourseCategoryDB.addCourseCategory(cat1);
+		CourseCategoryDB.updateCategory(cat1.getName(), cat1.getDescription());
+		assertEquals("Test that categoryList still equals 1 when update category description", 1,
+				CourseCategoryDB.courseCategoryList.size());
+		
+		// Test that category description is updated after using doUpdateCategory() method
+		CourseCategoryDB.addCourseCategory(cat1);
+		String outcome = CourseCategoryDB.updateCategory("Sports", "Lol");
+		assertEquals("Test that category description is updated after using doUpdateCategory() method", "Category Description Updated!",outcome);
+		
+		// Test that category description does not update if category name does not exist
+		CourseCategoryDB.addCourseCategory(cat1);
+		String output = CourseCategoryDB.updateCategory("Banana", "Lol");
+		assertEquals("Test that category description does not update if category name does not exist", "Category Does not Exist",output);
+		
+
+	}
+	
+	@Test
+	public void searchCategoryTest() {
+		// Test that categoryList is not null
+		assertNotNull("Test that categoryList is not null", CourseCategoryDB.courseCategoryList);
+		
+		// Test that category is shown when using doSearchCategory() method
+		CourseCategoryDB.addCourseCategory(cat1);
+		CourseCategoryDB.searchCategory(cat1.getName());
+		assertEquals("Test that category is shown when using doSearchCategory() method", cat1, CourseCategoryDB.courseCategoryList.get(0));
+		
+		// Test that category is not shown when an entered category name does not exist
+		CourseCategoryDB.addCourseCategory(cat1);
+		String outcome = CourseCategoryDB.searchCategory("Banana");
+		assertEquals("Test that category is not shown when an entered category name does not exist", "Invalid Category Name!", outcome);
+		
 		
 	}
 }

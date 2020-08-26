@@ -2,6 +2,7 @@ public class CourseCategory {
 
 	private String Name;
 	private String Description;
+	
 
 	public CourseCategory(String name, String description) {
 		super();
@@ -25,5 +26,8 @@ public class CourseCategory {
 	public void setDescription(String description) {
 		this.Description = description;
 	}
+	
+
+
 
 }

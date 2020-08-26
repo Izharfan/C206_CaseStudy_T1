@@ -10,7 +10,7 @@ public class maintainCourseCategory {
 	public void start() {
 		int option = 0;
 
-		while (option != 5) {
+		while (option != 6) {
 			CourseCategoryDB.showCategoryMenu();
 
 			option = Helper.readInt("Enter an option > ");
@@ -28,6 +28,9 @@ public class maintainCourseCategory {
 				String new_description = Helper.readString("Enter new category description > ");	
 				doUpdateCategory(update_name,new_description);
 			} else if (option == 5) {
+				String search_name = Helper.readString("Enter category name to search > ");	
+				doSearchCategory(search_name);
+			} else if (option == 6) {
 				System.out.println("Thank you!");
 			} else {
 				System.out.println("Invalid Option!");
@@ -52,8 +55,8 @@ public class maintainCourseCategory {
 		if (duplicateFound == true) {
 			System.out.println("New Course Category cannot be a repeated course category!");
 		} else {
-			String courseCategory_Name = Helper.readString("Enter Course Description > ");
-			CourseCategory new_courseCategory = new CourseCategory(courseCategoryName, courseCategory_Name);
+			String courseCategoryDescription = Helper.readString("Enter Course Description > ");
+			CourseCategory new_courseCategory = new CourseCategory(courseCategoryName, courseCategoryDescription);
 			CourseCategoryDB.addCourseCategory(new_courseCategory);
 
 		}
@@ -88,5 +91,14 @@ public class maintainCourseCategory {
 		Helper.line(30,"-");
 		
 		CourseCategoryDB.updateCategory(update_name, new_description);
+	}
+	
+	public static void doSearchCategory(String search_name) {
+		
+		Helper.line(30,"-");
+		System.out.println("Search Course Category");
+		Helper.line(30,"-");
+		
+		CourseCategoryDB.searchCategory(search_name);
 	}
 }
