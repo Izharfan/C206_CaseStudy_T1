@@ -69,7 +69,6 @@ public class CourseCategoryDB {
 				System.out.println("Category Does not Exist");
 			}
 		}
-
 	}
 
 	public static void showCategoryMenu() {
