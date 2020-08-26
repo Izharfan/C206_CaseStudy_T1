@@ -42,6 +42,36 @@ public class CourseCategoryDB {
 		}
 	}
 
+	public static void updateCategory(String name, String new_description) {
+
+		boolean isFound = false;
+		for (int i = 0; i < courseCategoryList.size(); i++) {
+			if (courseCategoryList.get(i).getName().equals(name)) {
+				isFound = true;
+
+				boolean duplicateFound = false;
+				for (int a = 0; a < CourseCategoryDB.courseCategoryList.size(); a++) {
+					if (CourseCategoryDB.courseCategoryList.get(a).getDescription().equals(new_description)) {
+						duplicateFound = true;
+					}
+				}
+
+				if (duplicateFound == true) {
+					System.out.println("New description cannot be a duplicate of an old description!");
+
+				} else {
+					courseCategoryList.get(i).setDescription(new_description);
+					System.out.println("Category Description Updated!");
+				}
+			}
+
+			if (isFound == false) {
+				System.out.println("Category Does not Exist");
+			}
+		}
+
+	}
+
 	public static void showCategoryMenu() {
 		System.out.println("Course Category Menu");
 		Helper.line(25, "-");
@@ -54,22 +84,4 @@ public class CourseCategoryDB {
 
 	}
 
-	public static void updateCategory(String name, String new_description) {
-
-		boolean isFound = false;
-		for (int i = 0; i < courseCategoryList.size(); i++) {
-			if (courseCategoryList.get(i).getName().equals(name)) {
-				isFound = true;
-
-			} else {
-				courseCategoryList.get(i).setDescription(new_description);
-				System.out.println("Category Description Updated!");
-			}
-		}
-
-		if (isFound == false) {
-			System.out.println("Category Does not Exist");
-		}
-
-	}
 }
