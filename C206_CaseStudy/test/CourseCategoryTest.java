@@ -118,4 +118,14 @@ public class CourseCategoryTest {
 		assertSame("Test if the arraylist.get(0) is cat2 after deleting category 1 from the arraylist ", cat2,
 				CourseCategoryDB.courseCategoryList.get(0));
 	}
+	
+	@Test
+	public void updateCategoryTest() {
+		maintainCourseCategory.doAddCourseCategory("Sports");
+		//Test that category description is updated after using doUpdateCategory() method
+		maintainCourseCategory.doUpdateCategory("1", "Uniformed Groups");
+		String updated_description = CourseCategoryDB.courseCategoryList.get(0).getDescription();
+		assertEquals("Test that category description is updated after using the doUpdateCategory() method", updated_description, "Uniformed Groups");
+		
+	}
 }
