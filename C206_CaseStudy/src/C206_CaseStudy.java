@@ -61,18 +61,12 @@ public class C206_CaseStudy {
 								System.out.println("Enter valid email");
 							}
 						}
-<<<<<<< HEAD
 				}
-				}	
+			}	
 				else{
 				System.out.println("Please enter a correct option, Thank you");
-=======
->>>>>>> branch 'master' of https://github.com/Izharfan/C206_CaseStudy_T1.git
-				}
 				}	
-				else{
-				System.out.println("Please enter a correct option, Thank you");
-				}
+			
 				
 				
 				
