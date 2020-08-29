@@ -1,5 +1,4 @@
-/**
- * I declare that this code was written by me.
+* I declare that this code was written by me.
  * I will not copy or allow others to copy my code.
  * I understand that copying code is considered as plagiarism.
  *
@@ -21,6 +20,8 @@ public class Member {
 	public int mobile_number;
 	public String date_of_birth;
 	public String country;
+	//Sprint 2
+	public String password;
 	
 	/**
 	 * @param name
@@ -38,6 +39,10 @@ public class Member {
 		this.mobile_number = mobile_number;
 		this.date_of_birth = date_of_birth;
 		this.country = country;
+	}
+	//Sprint 2
+	public Member (String password) {
+		this.password=password;
 	}
 	
 	public String getName() {
@@ -86,6 +91,14 @@ public class Member {
 	
 	public void setCountry(String country) {
 		this.country=country;
+	}
+	//sprint 2
+	public String getPw() {
+		return password;
+	}
+	
+	public void setPw(String password) {
+		this.password=password;
 	}
 
 }
