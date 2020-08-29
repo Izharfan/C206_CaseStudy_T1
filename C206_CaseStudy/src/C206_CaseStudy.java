@@ -30,42 +30,42 @@ public class C206_CaseStudy {
 					String date_of_birth = Helper.readString("Enter date of birth in this format (DD/MM/YYYY > ");
 					String country = Helper.readString("Enter country of residence > ");
 					
-					for(int i = 0; i < memberArrayList.size(); i++) {
-						if(memberArrayList.get(i).getEmail() != email) {
-							memberArrayList.add(new Member(name, gender,email,mobile_number , date_of_birth, country));
-						}
-						else {
-							System.out.println("Please enter valid email");
-						}
-					}
-					
-				}
-				else if (registerMember_option == 2){
-					Helper.line(30, "=");
-					System.out.println("View Member");
-					System.out.println(String.format("-20s %-20s %-20s -20s %-20s %-20s\n","Name", "Gender", "Mobile Number","Email","Date of Birth","Country of Residence"));
-					for(int i = 0; i < memberArrayList.size(); i++) {
-					if(memberArrayList.isEmpty()==false) {
-					System.out.println(String.format("-20s %-20s %-20d -20s %-20s %-20s\n", memberArrayList.get(i).getName(),memberArrayList.get(i).getGender() ,memberArrayList.get(i).getNumber(),memberArrayList.get(i).getEmail(), memberArrayList.get(i).getDOB(),memberArrayList.get(i).getCountry()));
-					}
-					}
-				}
-				else if (registerMember_option == 3) {
-					String email = Helper.readString("Enter email > ");
-					for(int i = 0; i < registrationArrayList.size(); i++) {
-						if(memberArrayList.isEmpty()==false) {
-							if(memberArrayList.get(i).getEmail() == email){
-								System.out.println("Member deleted");
-							}
-							else {
-								System.out.println("Enter valid email");
-							}
-						}
-				}
-			}	
-				else{
-				System.out.println("Please enter a correct option, Thank you");
-				}	
+//					for(int i = 0; i < memberArrayList.size(); i++) {
+//						if(memberArrayList.get(i).getEmail() != email) {
+//							memberArrayList.add(new Member(name, gender,email,mobile_number , date_of_birth, country));
+//						}
+//						else {
+//							System.out.println("Please enter valid email");
+//						}
+//					}
+//					
+//				}
+//				else if (registerMember_option == 2){
+//					Helper.line(30, "=");
+//					System.out.println("View Member");
+//					System.out.println(String.format("-20s %-20s %-20s -20s %-20s %-20s\n","Name", "Gender", "Mobile Number","Email","Date of Birth","Country of Residence"));
+//					for(int i = 0; i < memberArrayList.size(); i++) {
+//					if(memberArrayList.isEmpty()==false) {
+//					System.out.println(String.format("-20s %-20s %-20d -20s %-20s %-20s\n", memberArrayList.get(i).getName(),memberArrayList.get(i).getGender() ,memberArrayList.get(i).getNumber(),memberArrayList.get(i).getEmail(), memberArrayList.get(i).getDOB(),memberArrayList.get(i).getCountry()));
+//					}
+//					}
+//				}
+//				else if (registerMember_option == 3) {
+//					String email = Helper.readString("Enter email > ");
+//					for(int i = 0; i < registrationArrayList.size(); i++) {
+//						if(memberArrayList.isEmpty()==false) {
+//							if(memberArrayList.get(i).getEmail() == email){
+//								System.out.println("Member deleted");
+//							}
+//							else {
+//								System.out.println("Enter valid email");
+//							}
+//						}
+//				}
+//			}	
+//				else{
+//				System.out.println("Please enter a correct option, Thank you");
+//				}	
 			
 				
 				
@@ -140,6 +140,7 @@ public class C206_CaseStudy {
 			}
 
 			}
+		}
 	}
 
 	// menu for course managment system
