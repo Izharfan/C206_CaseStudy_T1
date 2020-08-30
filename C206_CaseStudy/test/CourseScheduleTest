@@ -1,0 +1,118 @@
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public class CourseScheduleTest {
+	private CourseSchedule cs;
+	
+	@Before
+	public void setUp() throws Exception{
+		cs = new CourseSchedule(1,1.00,"24/08/2020","24/08/2020","16:00","18:00","home");
+	}
+	
+	@After
+	public void tearDown() throws Exception{
+		cs = null;
+		C206_CaseStudy.courseScheduleList.clear();
+	}
+	
+	@Test
+	public void addCourseScheduleTest() {
+		//Test that the size of the student arraylist is 1 after adding 1st course schedule
+		CourseScheduleDB.addCourseSchedule(cs.getCourseScheduleId());
+		assertEquals("Test that the size of the course schedule arraylist is 1 after adding course schedule.",1,CourseScheduleDB.courseScheduleList.size());
+				
+		//Test that courseScheduleList id is not duplicated E.g. when id is 1
+		assertEquals("Test that course Schedule id is not duplicated",1,CourseScheduleDB.courseScheduleList.get(0).getCourseScheduleId());
+				
+		//Test that the first item in student arraylist is the same as the item that was added
+		assertSame("Test that the first item in course schedule arraylist is the same as the item was added.",cs.getCourseScheduleId(),CourseScheduleDB.courseScheduleList.get(0));
+						
+	}
+	
+	@Test
+	public void ViewCourseScheduleTest() {
+	
+	//Test that courseScheduleList is not null but empty in order to print out the items inside
+	assertNotNull("Test that courseScheduleList is not null to be able to retrieve something to view",C206_CaseStudy.courseScheduleList); 
+	
+	//Test that courseScheduleList is 1 when I add a course Schedule inside for it to print
+	CourseScheduleDB.addCourseSchedule(cs.getCourseScheduleId());
+	assertEquals("Test the courseScheduleList is 1 after I add something in for it to print out.",1,CourseScheduleDB.courseScheduleList.size());
+	
+	//Test that viewAllCategory() method return a String thats equals to expectedOutput2
+	CourseScheduleDB.addCourseSchedule(cs.getCourseScheduleId());
+	String expectedoutput2 = String.format("%-20s %-15s %-15s %-15s %-15s %-15s %-15s\n" ,"COURSE SCHEDULE ID", "PRICE($)","START DATE", "START TIME", "END DATE", "END TIME", "LOCATION");
+	
+	for(int i = 0; i < CourseScheduleDB.courseScheduleList.size(); i++ ) {
+		expectedoutput2 += String.format("%-20s %-15s %-15s %-15s %-15s %-15s %-15s\n", CourseScheduleDB.courseScheduleList.get(i).getCourseScheduleId(), CourseScheduleDB.courseScheduleList.get(i).getPrice(), CourseScheduleDB.courseScheduleList.get(i).getStart_date(), CourseScheduleDB.courseScheduleList.get(i).getStart_time()
+				, CourseScheduleDB.courseScheduleList.get(i).getEnd_date(), CourseScheduleDB.courseScheduleList.get(i).getEnd_time(), CourseScheduleDB.courseScheduleList.get(i).getLocation()); 
+		
+	}
+	
+	String viewCategory2 = CourseScheduleDB.viewCourseSchedule();
+	assertEquals("Test that viewAllStudents() method return a String that equals expectedOutput2",expectedoutput2,viewCategory2);
+	
+  
+	
+	}
+	
+	@Test
+	public void deleteCourseScheduleTest() {
+		//Test if the student ArrayList  is null To ensure there is something inside to delete
+		assertNotNull("Test that courseScheduleList is not null",C206_CaseStudy.courseScheduleList);
+
+		//Test if the item arraylist is still 0 after adding student 1 into the array list
+		CourseScheduleDB.addCourseSchedule(cs.getCourseScheduleId());
+		assertEquals("Test if the course Schedule arraylist is still 1 after adding",1,C206_CaseStudy.courseScheduleList.size());
+				
+		//Test if previous item added are deleted from the arraylist and the size of the arraylist is 0
+		CourseScheduleDB.deleteCourseSchedule(cs.getCourseScheduleId());
+		assertEquals("Test if the arraylist is 0 after deleting 1 object from the courseScheduleList ",0,C206_CaseStudy.courseScheduleList.size());
+	
+		//Test if there is registered member, the courseSchedule cannot be deleted
+		int x = C206_CaseStudy.registrationArrayList.get(0).getCourse_schedule_id();
+		int y = CourseScheduleDB.courseScheduleList.get(0).getCourseScheduleId();
+		if (x == y) {
+			assertSame("Test if there is member registered in the course schedule.",x,y);
+		}
+	}
+	
+	@Test
+	public void updateCourseScheduleTest() {
+		CourseScheduleDB.addCourseSchedule(cs.getCourseScheduleId());
+		//Test if can update details of location to hall
+		CourseScheduleDB.updateCourseSchedule(cs.getCourseScheduleId());
+		assertEquals("Test if the specific Course Schedule is updated to the new details","hall",cs.getLocation());
+		
+		//Test if can view the updated course schedule when I change price to $100.00
+		CourseScheduleDB.updateCourseSchedule(cs.getCourseScheduleId());
+		CourseScheduleDB.viewCourseSchedule();
+		assertSame("Test if the updated Course Schedule will be viewed when location is changed.",100,cs.getPrice());
+		
+		//Test if the Course Schedule is available for update or not
+		CourseScheduleDB.updateCourseSchedule(2);
+		assertEquals("Test that the Course Scheule ID entered is invalid.",2,CourseScheduleDB.courseScheduleList.get(0).getCourseScheduleId());	
+	}
+	
+	@Test
+	public void SearchByPriceTest() {
+		CourseScheduleDB.addCourseSchedule(cs.getCourseScheduleId());
+		//Search prices that the course Schedule have. E.g. $1.00
+		CourseScheduleDB.searchCoursePrice(1.00);
+		assertSame("Test if the display is correct with the price searched.",1,CourseScheduleDB.courseScheduleList.get(0).getPrice());
+		
+		//Search prices that is not in the course schedule
+		CourseScheduleDB.searchCoursePrice(1000.00);
+		assertSame("Test if the prices search, there are no course schedule with the price",1000,CourseScheduleDB.courseScheduleList.get(0).getPrice());
+		
+		//Search prices with negative number
+		CourseScheduleDB.searchCoursePrice(-1.00);
+		assertSame("Test if the prices search that are negative will not be printed",-1,CourseScheduleDB.courseScheduleList.get(0).getPrice());		
+	}
+	
+}
