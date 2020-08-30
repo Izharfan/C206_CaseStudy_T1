@@ -34,9 +34,9 @@ public class MemberMain {
 				 deleteMember();
 			} else if (member_option == 4) {
 				updateMember();
-			} else if (course_option == 5) {
+			} else if (member_option == 5) {
 				searchMember();
-			} else if (course_option == 6) {
+			} else if (member_option == 6) {
 				System.out.println("Thank You! Back to Main Menu.");
 			} else {
 				System.out.println("Invalid option entered.");
@@ -71,6 +71,14 @@ public class MemberMain {
 		Helper.line(80, "-");
 		String emil= Helper.readString("Enter Member email to be deleted > ");
 		MemberDB.deleteMember(emil);
+	}
+	
+	public static void updateMember() {
+		Helper.line(80, "-");
+		System.out.println("UPDATE MEMBER");
+		Helper.line(80, "-");
+		String emil= Helper.readString("Enter Member email to be deleted > ");
+		MemberDB.updateMember(emil);
 	}
 	
 	public static void searchMember() {
