@@ -10,12 +10,15 @@ public class maintainCourseCategory {
 	public void start() {
 		int option = 0;
 
-		while (option != 6) {
+		while (option != 7) {
 			CourseCategoryDB.showCategoryMenu();
 
 			option = Helper.readInt("Enter an option > ");
 
 			if (option == 1) {
+				Helper.line(30, "-");
+				System.out.println("Add Course Category");
+				Helper.line(30, "-");
 				String catName = Helper.readString("Enter Category Name > ");
 				doAddCourseCategory(catName);
 
@@ -24,13 +27,25 @@ public class maintainCourseCategory {
 			} else if (option == 3) {
 				doDeleteCourseCategory();
 			} else if (option == 4) {
+				Helper.line(30, "-");
+				System.out.println("Update Course Category");
+				Helper.line(30, "-");
 				String update_name = Helper.readString("Enter category name to update > ");
-				String new_description = Helper.readString("Enter new category description > ");	
-				doUpdateCategory(update_name,new_description);
+				String new_description = Helper.readString("Enter new category description > ");
+				doUpdateCategory(update_name, new_description);
 			} else if (option == 5) {
-				String search_name = Helper.readString("Enter category name to search > ");	
+				Helper.line(30, "-");
+				System.out.println("Search Course Category");
+				Helper.line(30, "-");
+				String search_name = Helper.readString("Enter category name to search > ");
 				doSearchCategory(search_name);
 			} else if (option == 6) {
+				Helper.line(30, "-");
+				System.out.println("List Course Category");
+				Helper.line(30, "-");
+				String name = Helper.readString("Enter category name to search > ");
+				CourseCategoryDB.listCourse(name);
+			} else if (option == 7) {
 				System.out.println("Thank you!");
 			} else {
 				System.out.println("Invalid Option!");
@@ -39,9 +54,6 @@ public class maintainCourseCategory {
 	}
 
 	public static void doAddCourseCategory(String courseCategoryName) {
-		Helper.line(30, "-");
-		System.out.println("Add Course Category");
-		Helper.line(30, "-");
 
 		boolean duplicateFound = false;
 
@@ -83,22 +95,18 @@ public class maintainCourseCategory {
 		CourseCategoryDB.deleteCourseCategory(delete_courseCategory);
 
 	}
-	
+
 	public static void doUpdateCategory(String update_name, String new_description) {
-		
-		Helper.line(30,"-");
-		System.out.println("Update Course Category");
-		Helper.line(30,"-");
-		
+
 		CourseCategoryDB.updateCategory(update_name, new_description);
 	}
-	
+
 	public static void doSearchCategory(String search_name) {
-		
-		Helper.line(30,"-");
-		System.out.println("Search Course Category");
-		Helper.line(30,"-");
-		
+
 		CourseCategoryDB.searchCategory(search_name);
+	}
+	public static void doListCategory(String list_name) {
+
+		CourseCategoryDB.searchCategory(list_name);
 	}
 }
