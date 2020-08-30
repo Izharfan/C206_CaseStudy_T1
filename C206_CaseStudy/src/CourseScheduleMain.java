@@ -2,28 +2,37 @@
 public class CourseScheduleMain {
 
 	public static void main(String[] args) {
+		start();
+	}
+	
+	public static void start() {
 		int course_option = 0;
-		while (course_option != 6) {
+		while (course_option != 7) {
 			CourseScheduleDB.showMenu();
 			course_option = Helper.readInt("Enter an option > ");
-			
 			if (course_option == 1) {
-				viewCourseSchedule();
+				System.out.println(CourseScheduleDB.viewCourseSchedule());
 			} else if (course_option == 2) {
-				addCourseSchedule();
+				int id = Helper.readInt("Enter Course Schedule ID > ");
+				CourseScheduleDB.addCourseSchedule(id);
 			} else if(course_option == 3) {
-				 deleteCourseSchedule();
+				int id = Helper.readInt("Enter Course Schedule ID to be deleted > ");
+				CourseScheduleDB.deleteCourseSchedule(id);
 			} else if (course_option == 4) {
-				updateCourseSchedule();
+				int id = Helper.readInt("Enter Course Schedule ID to be updated > ");
+				CourseScheduleDB.updateCourseSchedule(id);
 			} else if (course_option == 5) {
-				
+				double price = Helper.readDouble("Enter price to be search > ");
+				CourseScheduleDB.searchCoursePrice(price);
 			} else if (course_option == 6) {
+				int id = Helper.readInt("Enter Course Schedule ID to be view > ");
+				CourseScheduleDB.viewMemberCourseSchedule(id);
+			} else if (course_option == 7) {
 				System.out.println("Thank You! Back to Main Menu.");
 			} else {
 				System.out.println("Invalid option entered.");
-			}	
+			}
 		}
-
 	}
 	
 	public static void viewCourseSchedule() {
@@ -31,9 +40,9 @@ public class CourseScheduleMain {
 		System.out.println("VIEW COURSE SCHEDULE");
 		Helper.line(80, "-");
 		System.out.println(CourseScheduleDB.viewCourseSchedule());
-		
-	}
 	
+	}
+
 	public static void addCourseSchedule() {
 		Helper.line(80, "-");
 		System.out.println("ADD COURSE SCHEDULE");
@@ -41,7 +50,7 @@ public class CourseScheduleMain {
 		int id = Helper.readInt("Enter Course Schedule ID > ");
 		CourseScheduleDB.addCourseSchedule(id);
 	}
-	
+
 	public static void deleteCourseSchedule() {
 		Helper.line(80, "-");
 		System.out.println("DELETE COURSE SCHEDULE");
@@ -65,4 +74,13 @@ public class CourseScheduleMain {
 		double price = Helper.readDouble("Enter price to be search > ");
 		CourseScheduleDB.searchCoursePrice(price);
 	}
+	
+	public static void viewMemberSchedule() {
+		Helper.line(80, "-");
+		System.out.println("VIEW MEMBER COURSE SCHEDULE");
+		Helper.line(80, "-");
+		int id = Helper.readInt("Enter Course Schedule ID to be view > ");
+		CourseScheduleDB.viewMemberCourseSchedule(id);
+	}
+
 }
