@@ -85,33 +85,7 @@ public class C206_CaseStudy {
 
 			} else if (option == 4) {
 				// Member 4 pls fill up
-				int course_option = 0;
-				while (course_option != 7) {
-					CourseScheduleDB.showMenu();
-					course_option = Helper.readInt("Enter an option > ");
-					
-					if (course_option == 1) {
-						System.out.println(CourseScheduleDB.viewCourseSchedule());
-					} else if (course_option == 2) {
-						int id = Helper.readInt("Enter Course Schedule ID > ");
-						CourseScheduleDB.addCourseSchedule(id);
-					} else if(course_option == 3) {
-						int id = Helper.readInt("Enter Course Schedule ID to be deleted > ");
-						CourseScheduleDB.deleteCourseSchedule(id);
-					} else if (course_option == 4) {
-						int id = Helper.readInt("Enter Course Schedule ID to be updated > ");
-						CourseScheduleDB.updateCourseSchedule(id);
-					} else if (course_option == 5) {
-						double price = Helper.readDouble("Enter price to be search > ");
-						CourseScheduleDB.searchCoursePrice(price);
-					} else if (course_option == 6) {
-						int id = Helper.readInt("Enter Course Schedule ID to be view > ");
-						CourseScheduleDB.viewMemberCourseSchedule(id);
-					} else if (course_option == 7) {
-						System.out.println("Thank You! Back to Main Menu.");
-					} else {
-						System.out.println("Invalid option entered.");
-					}
+				CourseScheduleMain.start();
 				}			
 
 			
