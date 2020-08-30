@@ -4,6 +4,9 @@ public class CourseScheduleDB {
 	public static ArrayList <CourseSchedule> courseScheduleList = new ArrayList <CourseSchedule> ();
 	
 	public static String viewCourseSchedule() {
+		Helper.line(80, "-");
+		System.out.println("VIEW COURSE SCHEDULE");
+		Helper.line(80, "-");
 		String output = "";
 		if (courseScheduleList.size() == 0) {
 			output = "No Course Schedule Currently";
@@ -18,6 +21,9 @@ public class CourseScheduleDB {
 	}
 	
 	public static void addCourseSchedule(int courseSchedule_id) {
+		Helper.line(80, "-");
+		System.out.println("ADD COURSE SCHEDULE");
+		Helper.line(80, "-");
 		boolean checkID = false;
 		for (int i = 0; i < courseScheduleList.size();i++) {
 			if (courseSchedule_id == courseScheduleList.get(i).getCourseScheduleId()) {
@@ -40,20 +46,76 @@ public class CourseScheduleDB {
 
 	
 	public static void deleteCourseSchedule(int courseSchedule_id) {
+		Helper.line(80, "-");
+		System.out.println("DELETE COURSE SCHEDULE");
+		Helper.line(80, "-");
 		boolean check = false;
-		for (int i = 0; i < courseScheduleList.size();i++) {
-			if (courseSchedule_id == courseScheduleList.get(i).getCourseScheduleId()) {
-				courseScheduleList.remove(courseScheduleList.get(i));
-				System.out.println("Course Schedule Deleted!");
-				check = true;
+		boolean ans = checkCourseMember(courseSchedule_id);
+		if (ans == true) {
+			System.out.println("This Course Schedule cannot be deleted. A member had registered in this course schedule.");
+		} else {
+			for (int i = 0; i < courseScheduleList.size();i++) {
+				if (courseSchedule_id == courseScheduleList.get(i).getCourseScheduleId()) {
+					courseScheduleList.remove(courseScheduleList.get(i));
+					System.out.println("Course Schedule Deleted!");
+					check = true;
+				}
 			}
-		}
-		if (check == false) {
-			System.out.println("Invalid Course Schedule ID entered.");
+			if (check == false) {
+				System.out.println("Invalid Course Schedule ID entered.");
+			}
 		}
 	}
 	
+	public static boolean checkCourseMember (int courseSchedule_id) {
+		boolean check1 = false;
+		for (int i = 0; i < C206_CaseStudy.registrationArrayList.size();i++) {
+			if (C206_CaseStudy.registrationArrayList.get(i).getCourse_schedule_id() == courseSchedule_id) {
+				check1 = true;
+			} else {
+				check1 = false;
+			}
+		}
+		if (check1 == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public static void viewMemberCourseSchedule(int courseSchedule_id) {
+		Helper.line(80, "-");
+		System.out.println("VIEW MEMBER COURSE SCHEDULE");
+		Helper.line(80, "-");
+		String output = "";
+		boolean check = false;
+		ArrayList name = new ArrayList();
+		for (int i = 0; i < C206_CaseStudy.registrationArrayList.size();i++) {
+			if (C206_CaseStudy.registrationArrayList.get(i).getCourse_schedule_id() == courseSchedule_id) {
+				output = String.format("%-20s %-15s\n" ,"COURSE SCHEDULE ID","NAME");
+				for (int z = 0; z < C206_CaseStudy.memberArrayList.size();z++) {
+					if ((C206_CaseStudy.registrationArrayList.get(i).getEmail().equalsIgnoreCase(C206_CaseStudy.memberArrayList.get(z).getEmail()))){
+						name.add(C206_CaseStudy.memberArrayList.get(z).getName());
+						System.out.println(C206_CaseStudy.memberArrayList.get(z).getName());
+						check = true;
+					}
+				}
+			} else {
+				output = "No member in the course schedule";
+			}
+		}
+		if (check == true) {
+			for (int x = 0; x < name.size(); x++) {
+				output += String.format("%-20s %-15s\n", courseSchedule_id, name.get(x));
+			}
+		}
+		System.out.println(output);
+	}
+	
 	public static void updateCourseSchedule(int courseSchedule_id) {
+		Helper.line(80, "-");
+		System.out.println("UPDATE COURSE SCHEDULE");
+		Helper.line(80, "-");
 		boolean checkID = false;
 		for (int i = 0; i < courseScheduleList.size();i++) {
 			if (courseSchedule_id == courseScheduleList.get(i).getCourseScheduleId()) {
@@ -105,6 +167,9 @@ public class CourseScheduleDB {
 	}
 	
 	public static void searchCoursePrice(double price) {
+		Helper.line(80, "-");
+		System.out.println("SEARCH COURSE SCHEDULE BY PRICE");
+		Helper.line(80, "-");
 		boolean checkPrice = false;
 		String output = String.format("%-20s %-15s %-15s %-15s %-15s %-15s %-15s\n" ,"COURSE SCHEDULE ID", "PRICE($)","START DATE", "START TIME", "END DATE", "END TIME", "LOCATION");
 		for (int i = 0; i < courseScheduleList.size();i++) {
@@ -128,7 +193,8 @@ public class CourseScheduleDB {
 		System.out.println("3. Delete Course Schedule ");
 		System.out.println("4. Update Course Schedule");
 		System.out.println("5. Search Course Schedule by price");
-		System.out.println("6. Quit");
+		System.out.println("6. View members schedule");
+		System.out.println("7. Quit");
 	}
 	
 	public static void showUpdateMenu() {
