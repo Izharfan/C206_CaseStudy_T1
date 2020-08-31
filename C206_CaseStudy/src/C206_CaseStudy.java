@@ -82,6 +82,7 @@ public class C206_CaseStudy {
 			} else if (option == 3) {
 				// Member 3 pls fill up
 				courseMain cm = new courseMain();
+				cm.start();
 
 			} else if (option == 4) {
 				// Member 4 pls fill up
